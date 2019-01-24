@@ -15,7 +15,7 @@ resource "aws_security_group" "SG-INSTANCE" {
     from_port = 80
     protocol = "tcp"
     to_port = 80
-    cidr_blocks = ["${aws_security_group.SG-ELB.id}"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
     from_port = 0
@@ -38,23 +38,23 @@ resource "aws_instance" "EC2" {
   }
 }
 resource "aws_security_group" "SG-ELB" {
-vpc_id = "${var.vpc-id}"
+  vpc_id = "${var.vpc-id}"
 
-ingress {
-from_port = 80
-protocol = "tcp"
-to_port = 80
-cidr_blocks = ["0.0.0.0/0"]
-}
-egress {
-from_port = 0
-to_port = 0
-protocol = "-1"
-cidr_blocks = ["0.0.0.0/0"]
-}
-tags {
-Name = "terra_elb_sg"
-}
+  ingress {
+    from_port = 80
+    protocol = "tcp"
+    to_port = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags {
+    Name = "terra_elb_sg"
+  }
 }
 
 resource "aws_elb" "ELB" {
