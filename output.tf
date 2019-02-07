@@ -1,4 +1,4 @@
-output "instance-id" {
+output "instance-ami" {
   value = "${aws_instance.EC2.id}"
 }
 output "sg-ec2" {
