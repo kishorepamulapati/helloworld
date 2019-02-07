@@ -28,8 +28,7 @@ resource "aws_security_group" "SG-INSTANCE" {
   }
 }
 resource "aws_instance" "EC2" {
-  ami = "${var.instance-ami}"
-  key_name = "keypairs"
+  ami = "${var.instance_ami}"
   instance_type = "t2.micro"
   subnet_id = "${var.subnet-id}"
   vpc_security_group_ids = ["${aws_security_group.SG-INSTANCE.id}"]
