@@ -5,4 +5,4 @@ variable "subnet-id" {
 }
 variable "vpc-id"{
   default ="vpc-6052e104"
-}
+ }
